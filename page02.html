@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F2 - Configuración</title>
+  <link rel="stylesheet" href="style02.css">
+</head>
+<body>
+  <main class="page">
+    <h1>F2: Configurar el sorteo</h1>
+    <section class="panel">
+      <label for="participantsInput">Participantes, uno por línea</label>
+      <textarea id="participantsInput" maxlength="5100"></textarea>
+      <p><strong id="participantsCount">0</strong>/100 participantes guardados</p>
+      <fieldset>
+        <legend>Dividir por</legend>
+        <label><input type="radio" name="mode" id="modeEquipos" checked> Cantidad de equipos</label>
+        <label><input type="radio" name="mode" id="modeParticipantes"> Participantes por equipo</label>
+      </fieldset>
+      <label for="divideSelect">Cantidad</label>
+      <select id="divideSelect"></select>
+      <label for="titleInput">Título de los equipos</label>
+      <input id="titleInput" maxlength="60" placeholder="Título del sorteo">
+      <button id="generateBtn" type="button">Generar configuración</button>
+      <p id="message" class="message" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="main02.js"></script>
+</body>
+</html>
