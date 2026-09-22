@@ -1,31 +1,147 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F2 - Configuración</title>
-  <link rel="stylesheet" href="style02.css">
-</head>
-<body>
-  <main class="page">
-    <h1>F2: Configurar el sorteo</h1>
-    <section class="panel">
-      <label for="participantsInput">Participantes, uno por línea</label>
-      <textarea id="participantsInput" maxlength="5100"></textarea>
-      <p><strong id="participantsCount">0</strong>/100 participantes guardados</p>
-      <fieldset>
-        <legend>Dividir por</legend>
-        <label><input type="radio" name="mode" id="modeEquipos" checked> Cantidad de equipos</label>
-        <label><input type="radio" name="mode" id="modeParticipantes"> Participantes por equipo</label>
-      </fieldset>
-      <label for="divideSelect">Cantidad</label>
-      <select id="divideSelect"></select>
-      <label for="titleInput">Título de los equipos</label>
-      <input id="titleInput" maxlength="60" placeholder="Título del sorteo">
-      <button id="generateBtn" type="button">Generar configuración</button>
-      <p id="message" class="message" aria-live="polite"></p>
-    </section>
-  </main>
-  <script src="main02.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorteo de Equipos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style02.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <section id="configScreen" class="screen">
+        <header class="page-header">
+          <h1>Sorteo de equipos</h1>
+          <p class="page-subtitle">
+            Crea equipos al azar a partir de una lista de nombres, de forma
+            automática y gratuita.
+          </p>
+        </header>
+
+        <div class="card">
+          <div class="card-grid">
+            <div class="col">
+              <h2 class="col-title">
+                1 Ingresa los participantes
+              </h2>
+              <div class="textarea-wrap">
+                <textarea
+                  id="participantsInput"
+                  maxlength="5100"
+                  placeholder="Cada participante debe estar en una nueva línea"
+                ></textarea>
+                <span id="participantsCount" class="counter">0</span>
+              </div>
+              <p class="hint">
+                Agrega un <strong>*</strong> para indicar líderes de grupo.
+                <span class="hint-leader">*Líder</span>
+              </p>
+              <p class="error" id="participantsError"></p>
+            </div>
+
+            <div class="col">
+              <h2 class="col-title">
+                2 Cómo dividir
+              </h2>
+              <div class="radio-group">
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="divideMode"
+                    value="equipos"
+                    id="modeEquipos"
+                    checked
+                  />
+                  <span class="radio-dot"></span>
+                  Cantidad de equipos
+                </label>
+                <label class="radio">
+                  <input
+                    type="radio"
+                    name="divideMode"
+                    value="participantes"
+                    id="modeParticipantes"
+                  />
+                  <span class="radio-dot"></span>
+                  Participantes por equipo
+                </label>
+              </div>
+
+              <div class="select-wrap">
+                <select id="divideSelect"></select>
+              </div>
+
+              <h2 class="col-title col-title-spaced">
+                3 Título
+              </h2>
+              <input
+                type="text"
+                id="titleInput"
+                class="text-input"
+                placeholder="Copa del Mundo Qatar 2022"
+                maxlength="60"
+              />
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <button id="clearBtn" class="btn btn-ghost">Limpiar</button>
+            <button id="generateBtn" class="btn btn-primary">
+              Generar equipos
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="resultsScreen" class="screen hidden">
+        <header class="page-header">
+          <h1 id="resultsTitle">Resultado del sorteo</h1>
+          <button id="backBtn" class="btn btn-text">← Nuevo sorteo</button>
+        </header>
+
+        <div id="teamsContainer" class="teams-grid"></div>
+
+        <div class="results-footer">
+          <button id="downloadBtn" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                fill="currentColor"
+                d="M12 16l-5-5h3V4h4v7h3l-5 5zm-7 2h14v2H5v-2z"
+              />
+            </svg>
+            Descargar JPG
+          </button>
+          <button id="copyImageBtn" class="btn btn-outline">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                fill="currentColor"
+                d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"
+              />
+            </svg>
+            Copiar al portapapeles
+          </button>
+          <button id="copyColumnsBtn" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                fill="currentColor"
+                d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"
+              />
+            </svg>
+            Copiar equipos en columnas
+          </button>
+        </div>
+        <p class="copy-feedback" id="copyFeedback"></p>
+      </section>
+    </div>
+
+    <canvas id="renderCanvas" class="hidden-canvas"></canvas>
+
+    <script src="main02.js"></script>
+  </body>
 </html>
