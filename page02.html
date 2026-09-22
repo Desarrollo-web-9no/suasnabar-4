@@ -3,20 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F1 - Participantes</title>
+  <title>F2 - Configuración</title>
   <link rel="stylesheet" href="style02.css">
 </head>
 <body>
   <main class="page">
-    <h1>F1: Lista de participantes</h1>
-    <p>Registra hasta 100 participantes, uno por línea. La lista se conserva en este navegador.</p>
-    <label for="participantsInput">Participantes</label>
-    <textarea id="participantsInput" maxlength="5100" placeholder="Escribe un participante por línea"></textarea>
-    <div class="toolbar">
-      <span><strong id="participantsCount">0</strong>/100 participantes</span>
-      <button id="clearBtn" type="button">Limpiar</button>
-    </div>
-    <p id="participantsError" class="error" aria-live="polite"></p>
+    <h1>F2: Configurar el sorteo</h1>
+    <section class="panel">
+      <label for="participantsInput">Participantes, uno por línea</label>
+      <textarea id="participantsInput" maxlength="5100"></textarea>
+      <p><strong id="participantsCount">0</strong>/100 participantes guardados</p>
+      <fieldset>
+        <legend>Dividir por</legend>
+        <label><input type="radio" name="mode" id="modeEquipos" checked> Cantidad de equipos</label>
+        <label><input type="radio" name="mode" id="modeParticipantes"> Participantes por equipo</label>
+      </fieldset>
+      <label for="divideSelect">Cantidad</label>
+      <select id="divideSelect"></select>
+      <label for="titleInput">Título de los equipos</label>
+      <input id="titleInput" maxlength="60" placeholder="Título del sorteo">
+      <button id="generateBtn" type="button">Generar configuración</button>
+      <p id="message" class="message" aria-live="polite"></p>
+    </section>
   </main>
   <script src="main02.js"></script>
 </body>

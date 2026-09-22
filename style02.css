@@ -11,45 +11,51 @@ body {
     sans-serif;
 }
 .page {
-  width: min(720px, calc(100% - 32px));
+  width: min(760px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 48px 0;
+  padding: 40px 0;
 }
 h1 {
   color: #7a0d4a;
 }
-textarea {
-  display: block;
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  background: white;
+  border: 1px solid #e8e3f2;
+  border-radius: 14px;
+}
+textarea,
+select,
+input:not([type="radio"]) {
   width: 100%;
-  min-height: 320px;
-  margin-top: 10px;
-  padding: 14px;
+  padding: 12px;
   border: 2px solid #e8e3f2;
-  border-radius: 10px;
+  border-radius: 8px;
   font: inherit;
-  line-height: 1.5;
+}
+textarea {
+  min-height: 220px;
   resize: vertical;
 }
-textarea:focus {
-  outline: 3px solid #fbe4f0;
-  border-color: #d6157e;
-}
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
+fieldset {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #e8e3f2;
+  border-radius: 8px;
 }
 button {
-  padding: 10px 18px;
+  justify-self: end;
+  padding: 11px 18px;
   border: 0;
   border-radius: 8px;
   background: #7a0d4a;
   color: white;
   cursor: pointer;
 }
-.error {
+.message {
   min-height: 22px;
-  color: #c62855;
+  color: #1f9d68;
   font-weight: bold;
 }

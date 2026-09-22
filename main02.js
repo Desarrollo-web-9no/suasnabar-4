@@ -1,37 +1,43 @@
 (() => {
   'use strict';
-
-  const STORAGE_KEY = 'sorteo_equipos:participantes';
-  const MAX_PARTICIPANTS = 100;
-  const MAX_CHARS_PER_NAME = 50;
+  const key = 'sorteo_equipos:participantes';
   const input = document.getElementById('participantsInput');
   const count = document.getElementById('participantsCount');
-  const error = document.getElementById('participantsError');
-  const clearButton = document.getElementById('clearBtn');
+  const select = document.getElementById('divideSelect');
+  const title = document.getElementById('titleInput');
+  const message = document.getElementById('message');
+  const modeEquipos = document.getElementById('modeEquipos');
+  const modeParticipantes = document.getElementById('modeParticipantes');
+  const names = () => input.value.split('\n').map((name) => name.trim()).filter(Boolean);
 
-  function limitInput() {
-    let lines = input.value.split('\n').map((line) => line.slice(0, MAX_CHARS_PER_NAME));
-    const exceeded = lines.length > MAX_PARTICIPANTS;
-    input.value = lines.slice(0, MAX_PARTICIPANTS).join('\n');
-    return exceeded;
-  }
-
-  function update() {
-    const exceeded = limitInput();
-    const total = input.value.split('\n').filter((line) => line.trim()).length;
+  function refresh() {
+    input.value = input.value.split('\n').slice(0, 100).map((name) => name.slice(0, 50)).join('\n');
+    const total = names().length;
     count.textContent = total;
-    error.textContent = exceeded
-      ? `Solo se permiten ${MAX_PARTICIPANTS} participantes.`
-      : '';
-    localStorage.setItem(STORAGE_KEY, input.value);
+    select.innerHTML = '';
+    const max = Math.max(2, Math.min(total || 2, 20));
+    for (let value = modeEquipos.checked ? 2 : 1; value <= max; value += 1) {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = modeEquipos.checked
+        ? `${value} equipos`
+        : `${value} participante${value > 1 ? 's' : ''} por equipo`;
+      select.appendChild(option);
+    }
+    localStorage.setItem(key, input.value);
   }
 
-  input.value = localStorage.getItem(STORAGE_KEY) || '';
-  input.addEventListener('input', update);
-  clearButton.addEventListener('click', () => {
-    input.value = '';
-    update();
-    input.focus();
+  input.value = localStorage.getItem(key) || '';
+  input.addEventListener('input', refresh);
+  modeEquipos.addEventListener('change', refresh);
+  modeParticipantes.addEventListener('change', refresh);
+  document.getElementById('generateBtn').addEventListener('click', () => {
+    if (names().length < 2) {
+      message.textContent = 'Ingresa al menos 2 participantes.';
+      return;
+    }
+    const criterion = modeEquipos.checked ? `${select.value} equipos` : `${select.value} participantes por equipo`;
+    message.textContent = `Configurado: ${title.value.trim() || 'Resultado del sorteo'} | ${criterion}`;
   });
-  update();
+  refresh();
 })();
