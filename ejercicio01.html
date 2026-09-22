@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Aula Virtual - Ruleta</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="contenedor">
+      <header>
+        <h1>AULA VIRTUAL</h1>
+
+        <h2 id="tituloPrincipal">Ruleta de selección</h2>
+      </header>
+
+      <section class="contenido">
+        <div class="zona-ruleta">
+          <div class="ruleta-contenedor">
+            <canvas id="ruleta" width="500" height="500"> </canvas>
+
+            <div class="puntero"></div>
+
+            <div class="mensaje-ruleta" id="mensajeRuleta">
+              haz clic para girarlo
+            </div>
+          </div>
+
+          <div class="controles">
+            <button id="btnIniciar" class="btn iniciar">Iniciar</button>
+
+            <button id="btnReiniciar" class="btn reiniciar">Reiniciar</button>
+          </div>
+
+          <div class="resultado">
+            <span> Resultado: </span>
+
+            <strong id="resultado"> - </strong>
+          </div>
+        </div>
+
+        <aside class="panel-derecho">
+          <div class="lista">
+            <h3>Elementos</h3>
+
+            <div id="listaElementos"></div>
+          </div>
+
+          <div class="edicion" id="panelEdicion">
+            <label for="titulo"> Título </label>
+
+            <div class="fila-titulo">
+              <input type="text" id="titulo" value="Ruleta de selección" />
+
+              <button id="btnEditarTitulo">Editar</button>
+            </div>
+
+            <label for="elementos"> Elementos </label>
+
+            <textarea id="elementos" spellcheck="false"> </textarea>
+          </div>
+
+          <div class="atajos">
+            <h3>SPACE Girar</h3>
+
+            <p>
+              <b>R</b>
+              Reiniciar
+            </p>
+
+            <p>
+              <b>E</b>
+              Editar
+            </p>
+
+            <p>
+              <b>F</b>
+              Pantalla completa
+            </p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
