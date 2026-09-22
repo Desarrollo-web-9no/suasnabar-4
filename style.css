@@ -1,0 +1,379 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #111;
+  min-height: 100vh;
+}
+
+.contenedor {
+  width: 1100px;
+  max-width: 95%;
+
+  min-height: 700px;
+
+  margin: 0 auto;
+
+  background: white;
+
+  border: 1px solid #bbb;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+header {
+  height: 88px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 1px solid #ccc;
+
+  background: #fafafa;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 3px;
+}
+
+header h2 {
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.contenido {
+  display: flex;
+
+  gap: 25px;
+
+  padding: 25px;
+}
+
+.zona-ruleta {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.ruleta-contenedor {
+  position: relative;
+
+  width: 620px;
+  height: 620px;
+
+  max-width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#ruleta {
+  width: 500px;
+  height: 500px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  transform: rotate(0deg);
+
+  transition: transform 4s cubic-bezier(0.12, 0.75, 0.18, 1);
+}
+
+.puntero {
+  position: absolute;
+
+  right: 28px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 0;
+  height: 0;
+
+  border-top: 20px solid transparent;
+
+  border-bottom: 20px solid transparent;
+
+  border-right: 40px solid red;
+
+  z-index: 10;
+}
+
+.mensaje-ruleta {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(65, 48, 80, 0.9);
+
+  color: white;
+
+  padding: 9px 20px;
+
+  border-radius: 8px;
+
+  font-size: 18px;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+
+  z-index: 20;
+}
+
+.controles {
+  display: flex;
+
+  gap: 13px;
+
+  margin-top: 10px;
+}
+
+.btn {
+  border: none;
+
+  padding: 10px 20px;
+
+  color: white;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  border-radius: 4px;
+}
+
+.iniciar {
+  background: #087ff5;
+}
+
+.iniciar:hover {
+  background: #066ed1;
+}
+
+.reiniciar {
+  background: #e76f77;
+}
+
+.reiniciar:hover {
+  background: #d9545e;
+}
+
+.resultado {
+  min-width: 310px;
+
+  margin-top: 18px;
+
+  padding: 12px;
+
+  background: #f0f0f0;
+
+  border-radius: 6px;
+
+  text-align: center;
+
+  font-size: 18px;
+}
+
+.resultado strong {
+  color: #087ff5;
+
+  margin-left: 5px;
+}
+
+.panel-derecho {
+  width: 350px;
+
+  border-left: 1px solid #ddd;
+
+  padding-left: 25px;
+}
+
+.lista {
+  width: 100%;
+
+  height: 375px;
+
+  border: 1px solid #aaa;
+
+  overflow-y: auto;
+
+  background: white;
+}
+
+.lista h3 {
+  position: sticky;
+
+  top: 0;
+
+  padding: 8px;
+
+  margin: 0;
+
+  background: #eeeeee;
+
+  border-bottom: 1px solid #ccc;
+
+  font-size: 16px;
+}
+
+.elemento-lista {
+  padding: 5px 10px;
+
+  border-bottom: 1px solid #eee;
+
+  font-size: 15px;
+}
+
+.edicion {
+  margin-top: 15px;
+}
+
+.edicion label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 14px;
+}
+
+.fila-titulo {
+  display: flex;
+
+  gap: 5px;
+
+  margin-bottom: 10px;
+}
+
+.fila-titulo input {
+  flex: 1;
+
+  height: 32px;
+
+  padding: 5px;
+
+  border: 1px solid #aaa;
+
+  font-size: 14px;
+}
+
+.fila-titulo button {
+  padding: 5px 10px;
+
+  border: 1px solid #aaa;
+
+  background: #eee;
+
+  cursor: pointer;
+}
+
+.fila-titulo button:hover {
+  background: #ddd;
+}
+
+#elementos {
+  width: 100%;
+
+  height: 160px;
+
+  padding: 8px;
+
+  resize: vertical;
+
+  border: 1px solid #aaa;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+.atajos {
+  margin-top: 18px;
+
+  font-size: 15px;
+}
+
+.atajos h3 {
+  margin-bottom: 8px;
+
+  font-size: 15px;
+}
+
+.atajos p {
+  margin: 6px 0;
+}
+
+.atajos b {
+  display: inline-block;
+
+  width: 28px;
+
+  padding: 2px;
+
+  margin-right: 7px;
+
+  border: 1px solid #aaa;
+
+  background: #eee;
+
+  text-align: center;
+}
+
+.oculto {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  .contenido {
+    flex-direction: column;
+  }
+
+  .panel-derecho {
+    width: 100%;
+
+    border-left: none;
+
+    border-top: 1px solid #ddd;
+
+    padding-left: 0;
+
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .ruleta-contenedor {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  #ruleta {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .puntero {
+    right: 0;
+  }
+}
