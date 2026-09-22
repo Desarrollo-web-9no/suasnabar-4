@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 - Participantes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <h1>F1: Lista de participantes</h1>
+    <p>Registra hasta 100 participantes, uno por línea. La lista se conserva en este navegador.</p>
+    <label for="participantsInput">Participantes</label>
+    <textarea id="participantsInput" maxlength="5100" placeholder="Escribe un participante por línea"></textarea>
+    <div class="toolbar">
+      <span><strong id="participantsCount">0</strong>/100 participantes</span>
+      <button id="clearBtn" type="button">Limpiar</button>
+    </div>
+    <p id="participantsError" class="error" aria-live="polite"></p>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
